@@ -1,0 +1,38 @@
+# UNIX
+alias c="clear"
+alias e="$EDITOR"
+alias r="source ~/.zshrc"
+alias grep="grep -G"
+alias path='echo $PATH | tr -s ":" "\n"'
+alias ls='ls -lah --color=auto'
+
+# Utils
+alias cgd="clisso get default"
+
+# Git
+alias ga="git add"
+alias gco="git checkout"
+alias gst="git status"
+alias gbr="git branch"
+alias gft="git fetch"
+alias grb='git rebase'
+alias gpu='git push'
+alias gpl='git pull'
+alias grh='git reset'
+alias gmr='git merge'
+alias gcm='git commit'
+alias glg='git log --pretty'
+alias gre='git remote'
+
+alias gpsup='git push --set-upstream origin $(git_current_branch)'
+alias groh='git reset origin/$(git_current_branch) --hard'
+
+# others
+alias j='jump'
+alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'
+alias k='kubectl'
+alias cat='bat'
+
+# dbt
+alias dbt_clean='dbt clean ; dbt deps'
+alias dbt_docs='dbt docs generate && dbt docs serve'
