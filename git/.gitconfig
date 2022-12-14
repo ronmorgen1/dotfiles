@@ -1,0 +1,12 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Ron Morgenstern
+	email = ron.morgenstern@pagaya.com
+[pull]
+	rebase = true
+[core]
+	excludesfile = ~/.gitignore
