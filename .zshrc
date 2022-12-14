@@ -7,9 +7,9 @@ plugins=(
 	zsh-syntax-highlighting
 )
 
-for DOTFILE in `find $HOME/.dotfiles/zsh`
+for FILE in "$HOME/dotfiles/zsh"
 do
-    [ -f "$DOTFILE" ] && source "$DOTFILE"
+    [ -f "$FILE" ] && source "$FILE"
 done
 
 source $ZSH/oh-my-zsh.sh

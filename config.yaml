@@ -2,3 +2,4 @@
 .vimrc: .vimrc
 git/.gitconfig: .gitconfig
 git/.gitignore: .gitignore
+vim: .vim
