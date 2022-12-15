@@ -3,8 +3,10 @@ alias c="clear"
 alias e="$EDITOR"
 alias r="source ~/.zshrc"
 alias grep="grep -G"
-alias path='echo $PATH | tr -s ":" "\n"'
-alias ls='ls -lah --color=auto'
+alias path='echo -e ${PATH//:/\\n}'
+
+alias ls='ls -F'
+alias ll='ls -laF'
 
 # Utils
 alias cgd="clisso get default"
@@ -23,7 +25,6 @@ alias gmr='git merge'
 alias gcm='git commit'
 alias glg='git log --pretty'
 alias gre='git remote'
-
 alias gpsup='git push --set-upstream origin $(git_current_branch)'
 alias groh='git reset origin/$(git_current_branch) --hard'
 

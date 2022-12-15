@@ -6,7 +6,7 @@ plugins=(
 	zsh-syntax-highlighting
 )
 
-for FILE in $(find "$HOME/dotfiles/zsh");
+for FILE in $(find "$HOME/dotfiles/zsh")
 do
     [ -f "$FILE" ] && source "$FILE"
 done

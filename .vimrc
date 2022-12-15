@@ -23,6 +23,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'mhartington/oceanic-next'
 Plugin 'tpope/vim-fugitive'
+Plugin 'mg979/vim-visual-multi'
 
 call vundle#end()
 
