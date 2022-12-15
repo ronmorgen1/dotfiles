@@ -1,2 +1,2 @@
 # dotfiles
-User-defined configuration files repository
+A repository for user-defined configuration files
