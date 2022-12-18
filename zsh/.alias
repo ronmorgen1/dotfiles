@@ -4,8 +4,7 @@ alias e="$EDITOR"
 alias r="source ~/.zshrc"
 alias grep="grep -G"
 alias path='echo -e ${PATH//:/\\n}'
-
-alias ls='ls -F'
+alias ctsso="$HOME/internal-tools/control_tower_sso/x86_control_tower_sso/control_tower_sso"
 alias ll='ls -laF'
 
 # Utils
