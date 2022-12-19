@@ -23,7 +23,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'mhartington/oceanic-next'
 Plugin 'tpope/vim-fugitive'
-Plugin 'mg979/vim-visual-multi'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()
 
