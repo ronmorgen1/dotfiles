@@ -8,12 +8,11 @@
 "		   YP    Y888888P YP  YP  YP
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle plugins
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 
 set rtp+=$HOME/.vim/bundle/Vundle.vim
-
 
 call vundle#begin()
 
@@ -71,19 +70,15 @@ endif
 colorscheme OceanicNext
 set background=dark
 
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 " Moving around, tabs, windows and buffers
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <leader>t<leader> :tabnext<cr>
+map <leader>tm :tabnext<cr>
 
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 " NERDTree settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 silent! nmap <C-p> :NERDTreeToggle<CR>
@@ -104,7 +99,3 @@ let NERDTreeMinimalUI=1
 " Airline settings and theme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_solarized_bg='dark'
-
-
-autocmd BufNewFile,BufRead *.sh :set filetype=shell
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab

@@ -7,9 +7,6 @@ alias path='echo -e ${PATH//:/\\n}'
 alias ctsso="$HOME/internal-tools/control_tower_sso/x86_control_tower_sso/control_tower_sso"
 alias ll='ls -laF'
 
-# Utils
-alias cgd="clisso get default"
-
 # Git
 alias ga="git add"
 alias gco="git checkout"
@@ -28,9 +25,7 @@ alias gpsup='git push --set-upstream origin $(git_current_branch)'
 alias groh='git reset origin/$(git_current_branch) --hard'
 
 # others
-alias j='jump'
 alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'
-alias k='kubectl'
 alias cat='bat'
 
 # dbt
