@@ -4,5 +4,8 @@
 while read -r key value; do
   dest=$(echo "$HOME/$value")
   src=$(echo "$PWD/$key" | sed s/://g)
+  if [[ -e "$dest" ]] ; then
+    rm -rf "$dest"
+  fi
   ln -sf "$src" "$dest"
 done < <(yq -r config.yaml)
