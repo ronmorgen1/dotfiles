@@ -1,2 +1,3 @@
 .idea/
-vim/plugged/*
+!vim/bundle/Vundle.vim
+vim/bundle/*
