@@ -164,5 +164,5 @@ tags
 # Ignore all local history of files
 .history
 
-!.vim/bundle/Vundle.vim
 .vim/bundle/*
+!.vim/bundle/Vundle.vim
