@@ -13,6 +13,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'dense-analysis/ale'
+Plugin 'chrisbra/csv.vim'
 
 call vundle#end()
 
@@ -99,13 +100,10 @@ let g:ale_sign_warning = '⚠'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 
-let g:ale_linters = {
-  \  'sh': ['shell']
-  \}
 let g:ale_fixers = {
   \  '*': ['remove_trailing_lines', 'trim_whitespace'],
-  \  'sh': ['shfmt'],
+  \  'sh': ['prettier'],
   \  'json': ['prettier'],
   \  'markdown': ['prettier'],
-  \  'yaml': ['prettier']
+  \  'yaml': ['yamlfix']
   \}

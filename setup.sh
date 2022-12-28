@@ -1,36 +1,25 @@
-#==============
-# Remove old dot flies
-#==============
-sudo rm -rf ~/.vim >/dev/null 2>&1
-sudo rm -rf ~/.vimrc >/dev/null 2>&1
-sudo rm -rf ~/.tmux.conf >/dev/null 2>&1
-sudo rm -rf ~/.zshrc >/dev/null 2>&1
-sudo rm -rf ~/.gitconfig >/dev/null 2>&1
-sudo rm -rf ~/.gitignore >/dev/null 2>&1
-sudo rm -rf ~/.config/alacritty >/dev/null 2>&1
-sudo rm -rf ~/.config/bat >/dev/null 2>&1
+#!/bin/bash
 
-#==============
-# Create symlinks in the home folder
-# Allow overriding with files of matching names in the custom-configs dir
-#==============
+set -e
 
-SYMLINKS=()
-ln -sf ~/dotfiles/vim ~/.vim
-SYMLINKS+=('.vim')
-ln -sf ~/dotfiles/.vimrc ~/.vimrc
-SYMLINKS+=('.vimrc')
-ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
-SYMLINKS+=('.tmux.conf')
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
-SYMLINKS+=('.zshrc')
-ln -sf ~/dotfiles/git/.gitconfig ~/.gitconfig
-SYMLINKS+=('.gitconfig')
-ln -sf ~/dotfiles/git/.gitignore ~/.gitignore
-SYMLINKS+=('.gitignore')
-ln -sf ~/dotfiles/config/alacritty ~/.config/alacritty
-SYMLINKS+=('alacritty')
-ln -sf ~/dotfiles/config/bat ~/.config/bat
-SYMLINKS+=('bat')
+declare -a dotfiles=(
+  ".zshrc" 
+  ".vimrc" 
+  ".gitignore" 
+  ".gitconfig" 
+  ".tmux.conf" 
+  ".config/alacritty" 
+  ".config/bat" 
+  ".vim"
+)
 
-echo ${SYMLINKS[@]}
+for item in "${dotfiles[@]}"; do
+  # Check if the file already exists in the home directory
+  if [ -e "$HOME/$item" ]; then
+    printf 'Removing existing file %s\n' "$item"
+    rm -rf "$HOME/$item" >/dev/null 2>&1
+  fi
+  # Create a symlink to the file in the current directory
+  printf 'Linking %s\n\n' "$item"
+  ln -sf "$PWD/$item" "$HOME/$item"
+done
