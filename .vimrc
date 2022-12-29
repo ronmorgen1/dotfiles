@@ -14,6 +14,9 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'dense-analysis/ale'
 Plugin 'chrisbra/csv.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'jayli/vim-easycomplete'
 
 call vundle#end()
 
@@ -22,7 +25,6 @@ filetype plugin indent on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 set nocompatible
 set backupdir=~/.vim/backups   " set backup folder
 set undodir=~/.vim/undo        " set undo folder
@@ -107,3 +109,8 @@ let g:ale_fixers = {
   \  'markdown': ['prettier'],
   \  'yaml': ['yamlfix']
   \}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" UltiSnips
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:UltiSnipsEditSplit="vertical"
