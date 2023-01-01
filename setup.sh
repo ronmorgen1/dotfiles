@@ -2,15 +2,23 @@
 
 set -e
 
-# files
-ln -sf "$PWD/.zshrc" "$HOME/.zshrc"
-ln -sf "$PWD/.vimrc" "$HOME/.vimrc"
-ln -sf "$PWD/.tmux.conf" "$HOME/.tmux.conf"
-ln -sf "$PWD/git/.gitignore" "$HOME/.gitignore"
-ln -sf "$PWD/git/.gitconfig" "$HOME/.gitconfig"
+# Remove old files/directories 
+rm -rf "$HOME/.zshrc"
+rm -rf "$HOME/.vimrc"
+rm -rf "$HOME/.tmux.conf"
+rm -rf "$HOME/.gitignore"
+rm -rf "$HOME/.gitconfig"
+rm -rf "$HOME/zsh"
+rm -rf "$HOME/.vim"
+rm -rf "$HOME/.config/alacritty"
+rm -rf "$HOME/.config/bat"
 
-# Directories
-ln -sf "$PWD/zsh" "$HOME/zsh"
-ln -sf "$PWD/vim" "$HOME/.vim"
-ln -sf "$PWD/config/alacritty" "$HOME/.config/alacritty"
-ln -sf "$PWD/config/bat" "$HOME/.config/bat"
+ln -sfn "$PWD/.zshrc" "$HOME/.zshrc" || exit 1
+ln -sfn "$PWD/.vimrc" "$HOME/.vimrc" || exit 1
+ln -sfn "$PWD/.tmux.conf" "$HOME/.tmux.conf" || exit 1
+ln -sfn "$PWD/git/.gitignore" "$HOME/.gitignore" || exit 1
+ln -sfn "$PWD/git/.gitconfig" "$HOME/.gitconfig" || exit 1
+ln -sfn "$PWD/zsh" "$HOME/zsh" || exit 1
+ln -sfn "$PWD/vim" "$HOME/.vim" || exit 1
+ln -sfn "$PWD/config/alacritty" "$HOME/.config/alacritty" || exit 1
+ln -sfn "$PWD/config/bat" "$HOME/.config/bat" || exit 1
