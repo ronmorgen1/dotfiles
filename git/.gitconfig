@@ -40,7 +40,7 @@
  #  === Branch management ===
  br = !git branch --format='%(refname:short) - %(contents:subject) (%(committerdate:relative))' --sort=-committerdate
  sw = !git checkout $(git branch -a --format '%(refname:short)' | sed 's~origin/~~' | sort | uniq | fzf --height 40% --reverse)
- co = "!f() { git checkout -b \"$1\"; }; f"
+ cb = "!f() { git checkout -b \"$1\"; }; f"
  db = !git branch --no-color | fzf -m | xargs -I {} git branch -D '{}'
  pub = !git push --set-upstream origin `git rev-parse --abbrev-ref HEAD`
  rso = !git reset origin/`git rev-parse --abbrev-ref HEAD` --hard
