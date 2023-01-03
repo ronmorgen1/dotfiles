@@ -8,22 +8,7 @@ alias path='echo -e ${PATH//:/\\n}'
 alias ctsso="$HOME/internal-tools/control_tower_sso/x86_control_tower_sso/control_tower_sso"
 alias ll='ls -laF'
 
-# Git
-alias ga="git add"
-alias gco="git checkout"
-alias gst="git status"
-alias gbr="git branch"
-alias gft="git fetch"
-alias grb='git rebase'
-alias gpu='git push'
-alias gpl='git pull'
-alias grh='git reset'
-alias gmr='git merge'
-alias gcm='git commit'
-alias glg='git log --pretty'
-alias gre='git remote'
-alias gpsup='git push --set-upstream origin $(git_current_branch)'
-alias groh='git reset origin/$(git_current_branch) --hard'
+alias g='git'
 
 # others
 alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'

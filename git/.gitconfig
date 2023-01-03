@@ -38,10 +38,10 @@
  lg = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
  #  === Branch management ===
- publish = !git push --set-upstream origin `git rev-parse --abbrev-ref HEAD` # Sets the upstream branch for the current branch and pushes to remote
- oreset = !git reset origin/`git rev-parse --abbrev-ref HEAD` --hard
- br = !git branch --format='%(HEAD) %(refname:short)%(color:reset) - %(contents:subject) (%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
- sw = !git checkout $(git branch -a --format '%(refname:short)' | sed 's~origin/~~' | sort | uniq | fzf --height 40% --reverse) # Interactive way to switch branches
+ br = !git branch --format='%(refname:short) - %(contents:subject) (%(committerdate:relative))' --sort=-committerdate
+ cb = !git checkout $(git branch -a --format '%(refname:short)' | sed 's~origin/~~' | sort | uniq | fzf --height 40% --reverse) # Interactive way to switch branches
+ pub = !git push --set-upstream origin `git rev-parse --abbrev-ref HEAD` # Sets the upstream branch for the current branch and pushes to remote
+ rso = !git reset origin/`git rev-parse --abbrev-ref HEAD` --hard
 
  #  === Utillities ===
- alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort # List all git aliases
+ alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' # List all git aliases
