@@ -39,9 +39,11 @@
 
  #  === Branch management ===
  br = !git branch --format='%(refname:short) - %(contents:subject) (%(committerdate:relative))' --sort=-committerdate
- cb = !git checkout $(git branch -a --format '%(refname:short)' | sed 's~origin/~~' | sort | uniq | fzf --height 40% --reverse) # Interactive way to switch branches
- pub = !git push --set-upstream origin `git rev-parse --abbrev-ref HEAD` # Sets the upstream branch for the current branch and pushes to remote
+ sw = !git checkout $(git branch -a --format '%(refname:short)' | sed 's~origin/~~' | sort | uniq | fzf --height 40% --reverse)
+ co = "!f() { git checkout -b \"$1\"; }; f"
+ db = !git branch --no-color | fzf -m | xargs -I {} git branch -D '{}'
+ pub = !git push --set-upstream origin `git rev-parse --abbrev-ref HEAD`
  rso = !git reset origin/`git rev-parse --abbrev-ref HEAD` --hard
 
  #  === Utillities ===
- alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' # List all git aliases
+ alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/'
