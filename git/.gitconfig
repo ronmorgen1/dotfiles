@@ -1,12 +1,29 @@
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [user]
-	name = Ron Morgenstern
-	email = ron.morgenstern@pagaya.com
-[pull]
-	rebase = true
+    name = Ron Morgenstern
+    email = ron.morgenstern@pagaya.com
+
+[color]
+    branch = auto
+    diff = auto
+    interactive = auto
+    pager = true
+    status = auto
+    ui = true
+
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
+
 [core]
-	excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore
+
+[url "https://github.com/"]
+    insteadOf = git@github.com:
+
+[alias]
+    alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
+    sw = !git checkout $(git branch -a --format '%(refname:short)' | sed 's~origin/~~' | sort | uniq | fzf --height 40% --reverse)
+    co = !git commit -m "`git rev-parse --abbrev-ref HEAD`" -m "$*"
+    lg = ! git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
