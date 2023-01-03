@@ -16,6 +16,7 @@
  untracked = red
 
 [core]
+ editor = vim
  excludesfile = ~/.gitignore
 
 [url "https://github.com/"]
@@ -31,7 +32,7 @@
  m = merge
 
  #  === Commit Commands ===
- co = "!f() { git commit -m "`git rev-parse --abbrev-ref HEAD`" -m "$*"; }; f"
+ co = "!f() { git commit -m "`git rev-parse --abbrev-ref HEAD`" -m \"$1\"; }; f"
 
  #  === Logging ===
  lg = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
