@@ -1,29 +1,43 @@
 [user]
-    name = Ron Morgenstern
-    email = ron.morgenstern@pagaya.com
+ name = Ron Morgenstern
+ email = ron.morgenstern@pagaya.com
 
 [color]
-    branch = auto
-    diff = auto
-    interactive = auto
-    pager = true
-    status = auto
-    ui = true
+ branch = auto
+ diff = auto
+ interactive = auto
+ pager = true
+ status = auto
+ ui = true
 
 [color "status"]
-    added = green
-    changed = yellow
-    untracked = red
+ added = green
+ changed = yellow
+ untracked = red
 
 [core]
-    excludesfile = ~/.gitignore
+ excludesfile = ~/.gitignore
 
 [url "https://github.com/"]
-    insteadOf = git@github.com:
+ insteadOf = git@github.com:
 
 [alias]
-    alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
-    sw = !git checkout $(git branch -a --format '%(refname:short)' | sed 's~origin/~~' | sort | uniq | fzf --height 40% --reverse)
-    co = "!f() { git commit -m "`git rev-parse --abbrev-ref HEAD`" -m "$*"; }; f"
-    lg = ! git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+ #  === Common Commands ===
+ s = status # Shortcut for status
+ b = branch # Shortcut for branch
+ a = add # Shortcut for add
+
+ #  === Commit Commands ===
+ co = "!f() { git commit -m "`git rev-parse --abbrev-ref HEAD`" -m "$*"; }; f"
+
+ #  === Logging ===
+ lg = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+ #  === Branch management ===
+ publish = !git push --set-upstream origin `git rev-parse --abbrev-ref HEAD` # Sets the upstream branch for the current branch and pushes to remote
+ oreset = !git reset origin/`git rev-parse --abbrev-ref HEAD` --hard
+ br = !git branch --format='%(HEAD) %(refname:short)%(color:reset) - %(contents:subject) (%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+ sw = !git checkout $(git branch -a --format '%(refname:short)' | sed 's~origin/~~' | sort | uniq | fzf --height 40% --reverse) # Interactive way to switch branches
+
+ #  === Utillities ===
+ alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort # List all git aliases
