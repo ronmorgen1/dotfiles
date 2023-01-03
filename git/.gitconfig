@@ -23,9 +23,12 @@
 
 [alias]
  #  === Common Commands ===
- s = status # Shortcut for status
- b = branch # Shortcut for branch
- a = add # Shortcut for add
+ s = status
+ b = branch
+ a = add
+ r = rebase
+ f = fetch
+ m = merge
 
  #  === Commit Commands ===
  co = "!f() { git commit -m "`git rev-parse --abbrev-ref HEAD`" -m "$*"; }; f"
