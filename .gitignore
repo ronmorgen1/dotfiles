@@ -1,0 +1,22 @@
+# Swap
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+
+vim/plugged/*
+vim/swaps/*.swp
+vim/sessions/__LAST__
+Brewfile.lock.json
+
+config/gh/hosts.yml
+config/pip
+config/gh-dash
+config/raycast
+config/github-copilot
+config/lvim/.luarc.json
+config/lvim/lazy-lock.json
+config/lvim/plugin/packer_compiled.lua

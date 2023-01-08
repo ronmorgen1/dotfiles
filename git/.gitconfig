@@ -1,0 +1,30 @@
+[user]
+  name = Ron Morgenstern
+  email = ron.morgenstern@pagaya.com
+  username = ronmorgen1
+
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  pager = true
+  status = auto
+  ui = true
+
+[commit]
+  template = ~/.gitmessage
+
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = red
+
+[core]
+  editor = lvim
+  excludesfile = ~/.gitignore
+
+[url "https://github.com/"]
+  insteadOf = git@github.com:
+
+[merge]
+  ff = only

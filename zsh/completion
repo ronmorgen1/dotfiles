@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+# vim: set fdm=marker:
+
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' accept-exact-dirs false
+zstyle ':completion:*' path-completion true
+zstyle ':completion:*' show-completer false
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
+
+autoload -Uz compinit && compinit

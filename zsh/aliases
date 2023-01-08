@@ -1,0 +1,58 @@
+alias vi='lvim'
+
+for index ({1..9}); do
+  alias "$index"="cd +${index}"
+  alias -g "..$index"="$dotdot"
+  dotdot+='/..'
+done
+unset index dotdot
+
+alias sysinfo='system_profiler SPSoftwareDataType SPHardwareDataType'
+
+# grep
+GREP_EXCL=(.bzr CVS .git .hg .svn .idea .tox)
+alias grep="${aliases[grep]:-grep} --exclude-dir={\${(j.,.)GREP_EXCL}}"
+
+# more ways to ls
+alias ll='ls -lh'
+alias la='ls -lAh'
+alias ldot='ls -ld .*'
+
+# echo things
+alias print-fpath='for fp in $fpath; do echo $fp; done; unset fp'
+alias print-path='echo $PATH | tr ":" "\n"'
+alias print-functions='print -l ${(k)functions[(I)[^_]*]} | sort'
+
+# date/time
+alias timestamp="date '+%Y-%m-%d %H:%M:%S'"
+alias datestamp="date '+%Y-%m-%d'"
+alias isodate="date +%Y-%m-%dT%H:%M:%S%z"
+alias utc="date -u +%Y-%m-%dT%H:%M:%SZ"
+alias unixepoch="date +%s"
+
+# find
+alias fd='find . -type d -name'
+alias ff='find . -type f -name'
+
+# disk usage
+alias biggest='du -s ./* | sort -nr | awk '\''{print $2}'\'' | xargs du -sh'
+alias dux='du -x --max-depth=1 | sort -n'
+alias dud='du -d 1 -h'
+alias duf='du -sh *'
+
+# alias to pretty print all git aliases in "$HOME/.zsh/git-aliases" that starts with "alias="
+alias gali="cat "$HOME/.zsh/git-aliases" | grep -E '^alias' | cut -c6- | sort"
+
+
+# Misc
+alias reload='exec ${SHELL} -l'
+
+# bat
+if command -v bat &> /dev/null; then
+  alias cat="bat -pp --theme \"Visual Studio Dark+\"" 
+  alias catt="bat --theme \"Visual Studio Dark+\"" 
+fi
+
+# AWS
+alias aws_prod="export AWS_PROFILE=Eng-Prod"
+alias aws_dev="export AWS_PROFILE=Eng-Dev"
