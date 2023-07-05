@@ -1,22 +1,18 @@
+#! /usr/bin/env zsh
+# vim: set fdm=marker:
+
 alias vi='lvim'
-
-for index ({1..9}); do
-  alias "$index"="cd +${index}"
-  alias -g "..$index"="$dotdot"
-  dotdot+='/..'
-done
-unset index dotdot
-
-alias sysinfo='system_profiler SPSoftwareDataType SPHardwareDataType'
 
 # grep
 GREP_EXCL=(.bzr CVS .git .hg .svn .idea .tox)
 alias grep="${aliases[grep]:-grep} --exclude-dir={\${(j.,.)GREP_EXCL}}"
 
-# more ways to ls
-alias ll='ls -lh'
-alias la='ls -lAh'
-alias ldot='ls -ld .*'
+# Exa
+if command -v exa &>/dev/null; then
+	alias l='exa -1a --group-directories-first'
+	alias ll='exa -labF --git --no-user --group-directories-first'
+	alias lt='exa -Ta -L 2 --group-directories-first'
+fi
 
 # echo things
 alias print-fpath='for fp in $fpath; do echo $fp; done; unset fp'
@@ -43,14 +39,12 @@ alias duf='du -sh *'
 # alias to pretty print all git aliases in "$HOME/.zsh/git-aliases" that starts with "alias="
 alias gali="cat "$HOME/.zsh/git-aliases" | grep -E '^alias' | cut -c6- | sort"
 
-
 # Misc
 alias reload='exec ${SHELL} -l'
 
 # bat
-if command -v bat &> /dev/null; then
-  alias cat="bat -pp --theme \"Visual Studio Dark+\"" 
-  alias catt="bat --theme \"Visual Studio Dark+\"" 
+if command -v bat &>/dev/null; then
+	alias cat="bat -pp --theme \"Visual Studio Dark+\""
 fi
 
 # AWS

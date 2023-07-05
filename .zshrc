@@ -11,9 +11,7 @@ source "$ZSH/oh-my-zsh.sh"
 [ -f "$HOME/.zsh/functions" ] && source "$HOME/.zsh/functions"
 [ -f "$HOME/.zsh/options" ] && source "$HOME/.zsh/options"
 [ -f "$HOME/.zsh/environment" ] && source "$HOME/.zsh/environment"
-[ -f "$HOME/.zsh/settings" ] && source "$HOME/.zsh/settings"
 [ -f "$HOME/.zsh/completion" ] && source "$HOME/.zsh/completion"
-[ -f "$HOME/.zsh/keybinding" ] && source "$HOME/.zsh/keybinding"
 
 # load local config
 [ -f "$HOME/.local/etc/config.zsh" ] && source "$HOME/.local/etc/config.zsh"

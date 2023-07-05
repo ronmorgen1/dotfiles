@@ -1,15 +1,15 @@
 #! /usr/bin/env zsh
+# vim: set fdm=marker:
 
-# Encoding stuff for the terminal
+# Encoding, Terminal and Editors
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-
 export TERM="xterm-256color"
 export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
-
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+# History
 export HISTFILE="$HOME/.zsh_history"
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000
@@ -22,8 +22,7 @@ export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-export PATH=i"/usr/local/opt/python/libexec/bin:$PATH"
-
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 export LUNARVIM_RUNTIME_DIR="${LUNARVIM_RUNTIME_DIR:-"$HOME/.local/share/lunarvim"}"
 export LUNARVIM_CONFIG_DIR="${LUNARVIM_CONFIG_DIR:-"$HOME/.config/lvim"}"

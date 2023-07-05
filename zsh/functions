@@ -1,4 +1,5 @@
 #! /usr/bin/env zsh
+# vim: set fdm=marker:
 
 function switch_dbt_env() {
 	if [ "$DBT_ENV" == dev ]; then
