@@ -35,9 +35,6 @@ elif [ -f /etc/bash_completion ]; then
 	source /etc/bash_completion
 fi
 
-# fzf-zsh-completion
-[ -f "$ZSH_CUSTOM/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh" ] && source "$ZSH_CUSTOM/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh"
-
 # Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
@@ -47,5 +44,6 @@ plug "zap-zsh/zap-prompt"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "$ZSH_CUSTOM/plugins/fzf-tab"
+plug "zap-zsh/exa"
 
 autoload -Uz compinit && compinit

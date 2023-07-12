@@ -7,14 +7,6 @@ alias vi='lvim'
 GREP_EXCL=(.bzr CVS .git .hg .svn .idea .tox)
 alias grep="${aliases[grep]:-grep} --exclude-dir={\${(j.,.)GREP_EXCL}}"
 
-# Exa
-if command -v exa &>/dev/null; then
-	alias l='exa -1a --group-directories-first'
-	alias ll='exa -labF --git --no-user --group-directories-first'
-	alias lt='exa -Ta -L 2 --group-directories-first'
-fi
-
-# echo things
 alias print-fpath='for fp in $fpath; do echo $fp; done; unset fp'
 alias print-path='echo $PATH | tr ":" "\n"'
 alias print-functions='print -l ${(k)functions[(I)[^_]*]} | sort'
@@ -25,10 +17,6 @@ alias datestamp="date '+%Y-%m-%d'"
 alias isodate="date +%Y-%m-%dT%H:%M:%S%z"
 alias utc="date -u +%Y-%m-%dT%H:%M:%SZ"
 alias unixepoch="date +%s"
-
-# find
-alias fd='find . -type d -name'
-alias ff='find . -type f -name'
 
 # disk usage
 alias biggest='du -s ./* | sort -nr | awk '\''{print $2}'\'' | xargs du -sh'
