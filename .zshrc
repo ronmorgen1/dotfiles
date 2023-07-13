@@ -1,17 +1,24 @@
-# Path to your oh-my-zsh configuration.
-ZSH="$HOME/.oh-my-zsh"
+#! /usr/bin/env zsh
+# vim: set fdm=marker:
 
-ZSH_THEME="robbyrussell"
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
-source "$ZSH/oh-my-zsh.sh"
+# source zsh config files
+plug "$HOME/.zsh/aliases"
+plug "$HOME/.zsh/git-aliases"
+plug "$HOME/.zsh/functions"
+plug "$HOME/.zsh/options"
+plug "$HOME/.zsh/environment"
+plug "$HOME/.zsh/settings"
 
-# load zsh config files
-[ -f "$HOME/.zsh/aliases" ] && source "$HOME/.zsh/aliases"
-[ -f "$HOME/.zsh/git-aliases" ] && source "$HOME/.zsh/git-aliases"
-[ -f "$HOME/.zsh/functions" ] && source "$HOME/.zsh/functions"
-[ -f "$HOME/.zsh/options" ] && source "$HOME/.zsh/options"
-[ -f "$HOME/.zsh/environment" ] && source "$HOME/.zsh/environment"
-[ -f "$HOME/.zsh/completion" ] && source "$HOME/.zsh/completion"
+# plugins
+plug "zsh-users/zsh-autosuggestions"
+plug "zap-zsh/supercharge"
+plug "hlissner/zsh-autopair"
+plug "zap-zsh/zap-prompt"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "zap-zsh/exa"
+plug "zap-zsh/completions"
 
 # load local config
 [ -f "$HOME/.local/etc/config.zsh" ] && source "$HOME/.local/etc/config.zsh"
@@ -36,14 +43,5 @@ elif [ -f /etc/bash_completion ]; then
 fi
 
 # Zap installer
-[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
-
-plug "hlissner/zsh-autopair"
-plug "zap-zsh/supercharge"
-plug "zap-zsh/zap-prompt"
-plug "zsh-users/zsh-autosuggestions"
-plug "zsh-users/zsh-syntax-highlighting"
-plug "$ZSH_CUSTOM/plugins/fzf-tab"
-plug "zap-zsh/exa"
 
 autoload -Uz compinit && compinit

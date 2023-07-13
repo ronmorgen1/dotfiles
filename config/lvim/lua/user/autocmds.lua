@@ -7,6 +7,12 @@ M.config = function()
 		end,
 	})
 
+	vim.api.nvim_create_autocmd({ "BufEnter" }, {
+		callback = function()
+			vim.cmd("silent! lcd %:p:h")
+		end,
+	})
+
 	vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 		callback = function()
 			vim.highlight.on_yank({ higroup = "Visual", timeout = 40 })

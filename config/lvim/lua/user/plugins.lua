@@ -6,6 +6,16 @@ M.config = function()
 		{ "rebelot/kanagawa.nvim" },
 		{ "simrat39/rust-tools.nvim" },
 		{
+			"f-person/git-blame.nvim",
+			event = "BufRead",
+			config = function()
+				vim.g.gitblame_enabled = 0
+				vim.g.gitblame_message_template = "<summary> • <date> • <author>"
+				vim.g.gitblame_date_format = "%r"
+				vim.g.gitblame_virtual_text_column = 85
+			end,
+		},
+		{
 			"chrisbra/csv.vim",
 			ft = { "csv" },
 			enabled = lvim.builtin.csv_support,

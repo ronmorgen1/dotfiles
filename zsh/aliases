@@ -28,7 +28,7 @@ alias duf='du -sh *'
 alias gali="cat "$HOME/.zsh/git-aliases" | grep -E '^alias' | cut -c6- | sort"
 
 # Misc
-alias reload='exec ${SHELL} -l'
+alias r='exec ${SHELL} -l'
 
 # bat
 if command -v bat &>/dev/null; then
@@ -38,3 +38,10 @@ fi
 # AWS
 alias aws_prod="export AWS_PROFILE=Eng-Prod"
 alias aws_dev="export AWS_PROFILE=Eng-Dev"
+
+# dbt
+alias dls='fd -e sql | rev | cut -d'/' -f-1 | rev | sed -e "s/.sql//" | sort'
+
+# tmux
+alias tls='tmux list-sessions'
+alias tks='tmux kill-session -a'

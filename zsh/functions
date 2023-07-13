@@ -28,9 +28,17 @@ function pyclean() {
 function s3_list_keys() {
 	local bucket=$1
 	local prefix=$2
-	aws s3api list-objects-v2 --bucket $bucket --prefix $prefix --query 'Contents[].{Key: Key}'
+	aws s3api list-objects-v2 --bucket $bucket --prefix $prefix --query 'Contents[].{Key: Key, LastModified: LastModified}'
 }
 
 function mcd() {
 	mkdir -p "$1" && cd "$1"
+}
+
+function dbt_run() {
+	local models=$(fd -e sql | rev | cut -d'/' -f-1 | rev)
+  # passing the models list to fzf for selection
+  local selected_model=$(echo $models | tr ' ' '\n' | fzf -m)
+  # passing the selected models to dbt
+  echo $selected_models
 }

@@ -12,11 +12,11 @@ M.config = function()
 		{ command = "stylua", filetypes = { "lua" } },
 		{ command = "shfmt", filetypes = { "sh", "zsh" } },
 		{ command = "black", filetypes = { "python" } },
-		{ command = "prettier", filetypes = { "yaml", "json" } },
+		{ command = "prettier", filetypes = { "yaml", "json", "markdown" } },
+		{ command = "prettier", filetypes = { "markdown" } },
 	})
 
 	linters.setup({
-		{ command = "eslint_d", filetypes = { "javascript" } },
 		{ command = "flake8", filetypes = { "python" } },
 	})
 end

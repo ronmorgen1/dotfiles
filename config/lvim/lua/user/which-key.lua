@@ -50,6 +50,11 @@ M.config = function()
 			"Copy Parmalink",
 		},
 	}
+	lvim.builtin.which_key.mappings["E"] = {
+		name = "+Enviorment",
+		s = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Select Virtual Enviorment" },
+		c = { "<cmd>lua require('swenv.api').get_current_venv()<cr>", "Current Virtual Enviorment" },
+	}
 end
 
 return M
