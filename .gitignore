@@ -6,12 +6,13 @@
 [._]ss[a-gi-z]
 [._]sw[a-p]
 
-
+vim/after/*
+vim/pack/*
 vim/plugged/*
 vim/swaps/*.swp
 vim/sessions/__LAST__
 Brewfile.lock.json
-
+.zshrc.local
 config/gh/hosts.yml
 config/pip
 config/gh-dash

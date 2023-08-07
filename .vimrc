@@ -28,7 +28,6 @@ set noundofile
 set noswapfile
 set ttymouse=sgr
 set encoding=utf8
-scriptencoding utf-8
 
 " Hide scrollbars and mute annoying sound on errors
 if has('gui_running')
@@ -45,46 +44,6 @@ if has('unnamedplus')
 else
   set clipboard+=unnamed
 endif
-
-" -----------------------------------------------------------------------------
-" Plugins
-" -----------------------------------------------------------------------------
-
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
-endif
-
-call plug#begin(expand('~/.vim/plugged'))
-
-    Plug 'preservim/nerdtree'
-    Plug 'dense-analysis/ale'
-    Plug 'mechatroner/rainbow_csv'
-    Plug 'godlygeek/tabular'
-    Plug 'vim-scripts/grep.vim'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'tpope/vim-fugitive'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'mhinz/vim-startify'
-    Plug 'Yggdroot/indentLine'
-    Plug 'ntpeters/vim-better-whitespace'
-    Plug 'ryanoasis/vim-devicons'
-    Plug 'sainnhe/everforest'
-    Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-    Plug 'gelguy/wilder.nvim'
-    Plug 'xolox/vim-session'
-    Plug 'xolox/vim-misc'
-    Plug 'github/copilot.vim'
-
-call plug#end()
-
-filetype plugin indent on
-
-" -----------------------------------------------------------------------------
-" Color Settings
-" -----------------------------------------------------------------------------
 
 " Syntax highlighting
 syntax on
@@ -117,137 +76,6 @@ else
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
-
-" -----------------------------------------------------------------------------
-" Plugins Settings
-" -----------------------------------------------------------------------------
-
-" preservim/nerdtree
-let g:NERDTreeChDirMode            = 2
-let g:NERDTreeIgnore               = ['node_modules','\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
-let g:NERDTreeSortOrder            = ['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-let g:NERDTreeMinimalUI            = 0
-let g:nerdtree_tabs_focus_on_files = 1
-let g:NERDTreeMapOpenInTabSilent   = '<RightMouse>'
-let g:NERDTreeWinSize              = 60
-let g:NERDTreeShowHidden           = 1
-let g:NERDTreeWinPos               = 'right'
-let NERDTreeQuitOnOpen             = 1
-let NERDTreeHijackNetrw            = 0
-let g:loaded_netrw                 = 1
-let g:loaded_netrwPlugin           = 1
-
-" After a re-source, fix syntax matching issues (concealing brackets):
-if exists('g:loaded_webdevicons')
-    call webdevicons#refresh()
-endif
-
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*node_modules/
-
-nnoremap <silent> <C-f> :call NERDTreeToggleAndFind()<CR>
-nnoremap <silent> <C-n> :NERDTreeToggle<CR>
-
-" dense-analysis/ale
-let g:ale_linters = {
-	\'json': ['jq'],
-	\'yaml': ['yamllint'],
-	\'sql' : ['sqlint'],
-	\'bash': ['shfmt']
-\}
-
-let g:ale_fixers = {
-    \'*'   : ['remove_trailing_lines', 'trim_whitespace'],
-    \'json': ['jq'],
-    \'yaml': ['yamlfix'],
-    \'sql' : ['sqlfmt'],
-    \'bash': ['shfmt']
-\}
-
-let g:ale_fix_on_save = 1
-
-highlight ALEError cterm=underline
-highlight ALEWarning cterm=underline
-
-" junegunn/fzf.vim
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
-
-" airblade/vim-gitgutter
-let g:gitgutter_max_signs             = 5000
-let g:gitgutter_sign_removed          = '✗'
-let g:gitgutter_sign_added            = '✓'
-let g:gitgutter_map_keys              = 0
-let g:gitgutter_diff_args             = '--ignore-space-at-eol'
-
-" tpope/vim-fugitive
-nnoremap <Leader>gb :Git blame <CR>
-
-" mhinz/vim-startify
-let g:ascii = [
-    \ ' __     _____ __  __',
-    \ ' \ \   / /_ _|  \/  |',
-    \ '  \ \ / / | || |\/| |',
-    \ '   \ V /  | || |  | |',
-    \ '    \_/  |___|_|  |_|',
-    \ ''
-    \]
-let g:startify_custom_header = g:ascii
-let g:startify_session_dir = '~/.vim/sessions'
-let g:startify_files_number = 5
-let g:startify_bookmarks = [
-        \ { 'a': '~/.dotfiles' },
-        \ { 'd': '~/pgy-projects/DBT_piperdb' },
-        \ { 'c': '~/pgy-projects/config' },
-        \ ]
-let g:startify_lists = [
-        \ { 'header': ['   Most Recently Used'], 'type': 'files' },
-        \ { 'header': ['   Sessions'],           'type': 'sessions' },
-        \ { 'header': ['   Bookmarks'],          'type': 'bookmarks' },
-        \ ]
-
-" vim-airline/vim-airline
-let g:airline_theme                               = 'everforest'
-let g:airline_powerline_fonts                     = 1
-let g:airline_left_sep                            = ''
-let g:airline_left_alt_sep                        = ''
-let g:airline_right_sep                           = ''
-let g:airline_right_alt_sep                       = ''
-let g:airline_detect_whitespace                   = 1
-let g:airline_section_c                           = airline#section#create(['%{fnamemodify(expand("%"), ":~:.")}'])
-let g:airline_section_y                           = '%{fnamemodify(getcwd(), ":t")}'
-let g:airline_extensions                          = ['branch']
-let g:airline_section_z                           = '%3p%% %3l/%L:%3v'
-
-" Yggdroot/indentLine
-let g:indentLine_enabled       = 1
-let g:indentLine_concealcursor = ''
-let g:indentLine_char          = '┆'
-let g:indentLine_faster        = 1
-
-" gelguy/wilder.nvim
-call wilder#setup({'modes': [':', '/', '?']})
-
-let s:highlighters = [
-        \ wilder#pcre2_highlighter(),
-        \ wilder#basic_highlighter(),
-        \ ]
-
-call wilder#set_option('renderer', wilder#renderer_mux({
-      \ ':': wilder#popupmenu_renderer({
-      \   'highlighter': s:highlighters,
-      \ }),
-      \ '/': wilder#wildmenu_renderer({
-      \   'highlighter': s:highlighters,
-      \ }),
-      \ }))
-
-" xolox/vim-session
-let g:session_command_aliases = 1
-let g:session_autosave = 'no'
-let g:session_autoload = 'no'
-nnoremap <silent> <Leader>seo :SessionOpen<CR>
-nnoremap <silent> <Leader>sev :SessionView<CR>
-nnoremap <silent> <Leader>ses :SessionSave<CR>
 
 " -----------------------------------------------------------------------------
 " Keys (re)Mappings
@@ -314,6 +142,10 @@ nnoremap <Leader>s= <C-W>=
 nnoremap <silent> ]t :tabnext<CR>
 nnoremap <silent> [t :tabprev<CR>
 nnoremap <Leader>te :tabedit<Space>
+
+" Move a line of text
+nnoremap <C-j> mz:m+<CR>`z
+nnoremap <C-k> mz:m-2<CR>`z
 
 " Terminal
 if has('nvim') || has('terminal')
@@ -398,10 +230,24 @@ augroup END
 " Functions and Commands
 " -----------------------------------------------------------------------------
 
-function! NERDTreeToggleAndFind()
-    if (exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1)
-      execute ':NERDTreeClose'
+
+" Don't close window, when deleting a buffer
+command! Bclose call <SID>BufcloseCloseIt()
+function! <SID>BufcloseCloseIt()
+    let l:currentBufNum = bufnr("%")
+    let l:alternateBufNum = bufnr("#")
+
+    if buflisted(l:alternateBufNum)
+        buffer #
     else
-      execute ':NERDTreeFind'
+        bnext
+    endif
+
+    if bufnr("%") == l:currentBufNum
+        new
+    endif
+
+    if buflisted(l:currentBufNum)
+        execute("bdelete! ".l:currentBufNum)
     endif
 endfunction

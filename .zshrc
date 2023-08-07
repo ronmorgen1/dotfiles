@@ -1,24 +1,9 @@
 #! /usr/bin/env zsh
 # vim: set fdm=marker:
 
-[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
-
-# source zsh config files
-plug "$HOME/.zsh/aliases"
-plug "$HOME/.zsh/git-aliases"
-plug "$HOME/.zsh/functions"
-plug "$HOME/.zsh/options"
-plug "$HOME/.zsh/environment"
-plug "$HOME/.zsh/settings"
-
-# plugins
-plug "zsh-users/zsh-autosuggestions"
-plug "zap-zsh/supercharge"
-plug "hlissner/zsh-autopair"
-plug "zap-zsh/zap-prompt"
-plug "zsh-users/zsh-syntax-highlighting"
-plug "zap-zsh/exa"
-plug "zap-zsh/completions"
+[ -f "$HOME/.zsh/aliases.zsh" ] && source "$HOME/.zsh/aliases.zsh"
+[ -f "$HOME/.zsh/functions.zsh" ] && source "$HOME/.zsh/functions.zsh"
+[ -f "$HOME/.zsh/exports.zsh" ] && source "$HOME/.zsh/exports.zsh"
 
 # load local config
 [ -f "$HOME/.local/etc/config.zsh" ] && source "$HOME/.local/etc/config.zsh"
@@ -43,5 +28,14 @@ elif [ -f /etc/bash_completion ]; then
 fi
 
 # Zap installer
+[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
+
+# plugins
+plug "zsh-users/zsh-autosuggestions"
+plug "zap-zsh/supercharge"
+plug "zap-zsh/zap-prompt"
+plug "hlissner/zsh-autopair"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "$HOME/.zsh/plugins/jump.zsh"
 
 autoload -Uz compinit && compinit

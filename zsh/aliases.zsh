@@ -1,6 +1,67 @@
 #! /usr/bin/env zsh
 # vim: set fdm=marker:
 
+alias vi="lvim"
+alias j='jump'
+alias op="code $(fd -e code-workspace 'pgy-projects')"
+alias r='exec ${SHELL} -l'
+
+# grep
+GREP_EXCL=(.bzr CVS .git .hg .svn .idea .tox)
+alias grep="${aliases[grep]:-grep} --exclude-dir={\${(j.,.)GREP_EXCL}}"
+
+alias print-fpath='for fp in $fpath; do echo $fp; done; unset fp'
+alias print-path='echo $PATH | tr ":" "\n"'
+alias print-functions='print -l ${(k)functions[(I)[^_]*]} | sort'
+
+# date/time
+alias timestamp="date '+%Y-%m-%d %H:%M:%S'"
+alias datestamp="date '+%Y-%m-%d'"
+alias isodate="date +%Y-%m-%dT%H:%M:%S%z"
+alias utc="date -u +%Y-%m-%dT%H:%M:%SZ"
+alias unixepoch="date +%s"
+
+# disk usage
+alias biggest='du -s ./* | sort -nr | awk '\''{print $2}'\'' | xargs du -sh'
+alias dux='du -x --max-depth=1 | sort -n'
+alias dud='du -d 1 -h'
+alias duf='du -sh *'
+
+# bat
+if command -v bat &>/dev/null; then
+	alias cat="bat -pp --theme \"Visual Studio Dark+\""
+fi
+
+alias la='ls -lah'
+
+# AWS
+alias aws_prod="export AWS_PROFILE=Eng-Prod"
+alias aws_dev="export AWS_PROFILE=Eng-Dev"
+
+# dbt
+alias dls='fd -e sql | rev | cut -d'/' -f-1 | rev | sed -e "s/.sql//" | sort'
+
+# tmux
+alias tls='tmux list-sessions'
+alias tks='tmux kill-session -a'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+######################
+## Git ###############
+######################
+
 # Git version checking
 autoload -Uz is-at-least
 git_version="${${(As: :)$(git version 2>/dev/null)}[3]}"

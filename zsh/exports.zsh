@@ -15,7 +15,12 @@ export HISTFILE="$HOME/.zsh_history"
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000
 
+# go
+export GOROOT="/usr/lib/go"
+export GOPATH="$HOME/go"
+
 # general exports
+export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -30,9 +35,15 @@ export LUNARVIM_CONFIG_DIR="${LUNARVIM_CONFIG_DIR:-"$HOME/.config/lvim"}"
 export LUNARVIM_CACHE_DIR="${LUNARVIM_CACHE_DIR:-"$HOME/.cache/lvim"}"
 export LUNARVIM_BASE_DIR="${LUNARVIM_BASE_DIR:-"$HOME/.local/share/lunarvim/lvim"}"
 
+# fzf catppuccin_mocha
+export FZF_DEFAULT_OPTS=" \
+--height 30% --border=rounded --margin=1% --inline-info --no-mouse \
+--bind ctrl-p:toggle-preview,ctrl-f:page-down,ctrl-b:page-up --bind pgdn:preview-page-down,pgup:preview-page-up
+"
+
 export ZSH_AUTOSUGGEST_STRATEGY=(
-    history
-    completion
+	history
+	completion
 )
 
 export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
