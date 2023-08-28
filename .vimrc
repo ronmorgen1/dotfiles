@@ -1,85 +1,116 @@
-" -----------------------------------------------------------------------------
-" Basic Settings
-" -----------------------------------------------------------------------------
+"*****************************************************************************
+"" Vim-Plug
+"*****************************************************************************
 
+let vimplug_exists=expand('~/.vim/autoload/plug.vim')
+if has('win32')&&!has('win64')
+  let curl_exists=expand('C:\Windows\Sysnative\curl.exe')
+else
+  let curl_exists=expand('curl')
+endif
+
+if !filereadable(vimplug_exists)
+  if !executable(curl_exists)
+    echoerr "You have to install curl or first install vim-plug yourself!"
+    execute "q!"
+  endif
+  echo "Installing Vim-Plug..."
+  echo ""
+  silent exec "!"curl_exists" -fLo " . shellescape(vimplug_exists) . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  let g:not_finish_vimplug = "yes"
+
+  autocmd VimEnter * PlugInstall
+endif
+
+call plug#begin(expand('~/.vim/plugged'))
+
+Plug 'sainnhe/everforest'
+Plug 'github/copilot.vim'
+
+call plug#end()
+
+filetype plugin indent on
+
+"*****************************************************************************
+"" Basic Setup
+"*****************************************************************************"
+
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+set ttyfast
+set backspace=indent,eol,start
+set tabstop=4
+set softtabstop=0
+set shiftwidth=4
+set expandtab
+let mapleader=' '
 set hidden
-set number
-set wrap
-set showmatch
-set ruler
-set showcmd
-set lazyredraw
-set scrolloff=8
-set cursorline
-set nocursorcolumn
-set fileformats=unix,dos,mac
-set formatoptions-=ro
 set hlsearch
 set incsearch
+set ignorecase
 set smartcase
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
-set expandtab
-set backspace=indent,eol,start
-set whichwrap+=<,>,h,l
-set nobackup
-set noundofile
-set noswapfile
-set ttymouse=sgr
-set encoding=utf8
+set fileformats=unix,dos,mac
 
-" Hide scrollbars and mute annoying sound on errors
-if has('gui_running')
-  set guioptions-=r
-  set guioptions-=L
-  set guioptions-=T
-  set guioptions-=e
-  set shortmess+=c
-endif
-
-" Clipboard
-if has('unnamedplus')
-  set clipboard=unnamedplus,unnamed
+if exists('$SHELL')
+    set shell=$SHELL
 else
-  set clipboard+=unnamed
+    set shell=/bin/sh
 endif
 
-" Syntax highlighting
+"*****************************************************************************
+"" Visual Settings
+"*****************************************************************************
+
 syntax on
+set ruler
+set number
 
 if has('termguicolors')
   set termguicolors
 endif
 
-let g:everforest_better_performance = 1
-let g:everforest_background = 'soft'
-
-" Color scheme
-colorscheme everforest
 set background=dark
 
-if $COLORTERM ==# 'gnome-terminal'
-  set term=gnome-256color
-else
-  if $TERM ==# 'xterm'
-    set term=xterm-256color
-  endif
-endif
+" Available values: 'hard', 'medium'(default), 'soft'
+let g:everforest_background = 'soft'
+let g:everforest_better_performance = 1
 
-" Changing cursor and highlighting line when in insert mode
-autocmd InsertEnter,InsertLeave * set cul!
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
+colorscheme everforest
 
-" -----------------------------------------------------------------------------
-" Keys (re)Mappings
-" -----------------------------------------------------------------------------
+"*****************************************************************************
+"" Autocmd Rules
+"*****************************************************************************
+
+augroup vimrc-sync-fromstart
+  autocmd!
+  autocmd BufEnter * :syntax sync maxlines=200
+augroup END
+
+" Remember cursor position
+augroup vimrc-remember-cursor-position
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
+" txt
+augroup vimrc-wrapping
+  autocmd!
+  autocmd BufRead,BufNewFile *.txt call s:setupWrapping()
+augroup END
+
+" make/cmake
+augroup vimrc-make-cmake
+  autocmd!
+  autocmd FileType make setlocal noexpandtab
+  autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
+augroup END
+
+set autoread
+
+"*****************************************************************************
+"" Mappings
+"*****************************************************************************
 
 " Be the change you want to see
 nnoremap <Left>  <Nop>
@@ -133,10 +164,9 @@ nnoremap <silent> ]B :blast<CR>
 nnoremap <silent> ]w  <C-W>w
 nnoremap <silent> [w  <C-W>W
 
-" Splits
-nnoremap <Leader>sh <C-W>s
-nnoremap <Leader>sv <C-W>v
-nnoremap <Leader>s= <C-W>=
+"" Split
+noremap <Leader>h :<C-u>split<CR>
+noremap <Leader>v :<C-u>vsplit<CR>
 
 " Tabs
 nnoremap <silent> ]t :tabnext<CR>
@@ -186,6 +216,13 @@ nnoremap <silent> <Leader>tp :setlocal paste!<CR>
 " Reload .vimrc
 nnoremap <F12> :source ~/.vimrc <cr>:echom "Reloaded Vim configuration"<cr>
 
+"" Opens an edit command with the path of the currently edited file filled in
+noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+
+"" Opens a tab edit command with the path of the currently edited file filled
+noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+
+
 " -----------------------------------------------------------------------------
 " Abbreviations
 " -----------------------------------------------------------------------------
@@ -203,33 +240,8 @@ cnoreabbrev Q q
 cnoreabbrev Qall qall
 
 " -----------------------------------------------------------------------------
-" Autocmd Rules &
-" -----------------------------------------------------------------------------
-
-" Remember cursor position
-augroup vimrc-remember-cursor-position
-  autocmd!
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-augroup END
-
-set autoread
-
-" File Templates
-augroup FileTemplates
-    autocmd BufNewFile *.sh 0r ~/.vim/templates/bash.sh
-    autocmd BufNewFile readme.md 0r ~/.vim/templates/readme.md
-augroup END
-
-" Reset cursor
-augroup RestoreCursorShapeOnExit
-  autocmd!
-  autocmd VimLeave * set guicursor=a:ver100
-augroup END
-
-" -----------------------------------------------------------------------------
 " Functions and Commands
 " -----------------------------------------------------------------------------
-
 
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()

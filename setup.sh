@@ -68,6 +68,7 @@ create_symlinks() {
     ln -sf "$DOTFILES/git/.gitignore" "$HOME/.gitignore"
     ln -sf "$DOTFILES/git/.gitmessage" "$HOME/.gitmessage"
     ln -sf "$DOTFILES/.inputrc" "$HOME/.inputrc"
+    ln -sf "$DOTFILES/.bin" "$HOME/.bin"
 }
 
 main() {
