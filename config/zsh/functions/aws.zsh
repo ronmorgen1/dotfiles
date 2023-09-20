@@ -16,7 +16,7 @@ function switch_aws_profile() {
 function s3_list_keys() {
     local bucket=$1
     local prefix=$2
-    aws s3api list-objects-v2 --bucket $bucket --prefix $prefix --query 'Contents[].{Key: Key, LastModified: LastModified}'
+    aws s3api list-objects-v2 --bucket $bucket --prefix $prefix --query 'Contents[].{Key: Key, Size: Size}'
 }
 
 function s3_list_buckets() {

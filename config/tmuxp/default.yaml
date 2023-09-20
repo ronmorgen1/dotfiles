@@ -1,0 +1,11 @@
+session_name: dev
+windows:
+  - window_name: dbt
+    start_directory: "${HOME}/pgy-projects/dbt-luigi"
+    panes:
+      - shell_command:
+          - cd dbt-luigi-spark; clear
+      - shell_command:
+          - cd DBT_piperdb; clear
+  - window_name: dotfiles
+    start_directory: "${HOME}/.dotfiles"

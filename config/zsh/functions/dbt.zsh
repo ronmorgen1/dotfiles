@@ -20,3 +20,13 @@ function switch_dbt_fr() {
 		export DBT_FULL_REFRESH=true
 	fi
 }
+
+function dbt_ls_models() {
+    # check that we are in a dbt project and that target/manifest.json exists
+    if [ ! -f target/manifest.json ]; then
+        echo "Error: target/manifest.json not found. Are you in a dbt project?"
+        return 1
+    else
+       cat target/manifest.json | jq -r '.nodes[] | select(.resource_type == "model") | .name' | uniq | sort
+    fi
+}

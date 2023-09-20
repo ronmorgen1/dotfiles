@@ -1,0 +1,171 @@
+{
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSurroundingLines": 8,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": false,
+    "editor.guides.indentation": true,
+    "editor.minimap.enabled": false,
+    "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
+    "files.exclude": {
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.pytest_cache/": true,
+        "**/dbt_packages": true,
+        ".idea/": true,
+        ".python-version": true
+    },
+    "files.associations": {
+        "*.sql": "jinja-sql"
+    },
+    "files.trimTrailingWhitespace": true,
+    "git.branchProtection": [
+        "master"
+    ],
+
+    "terminal.integrated.tabs.location": "left",
+    "sqlfluff.executablePath": "/usr/local/bin/sqlfluff",
+    "vim.easymotion": true,
+    "vim.highlightedyank.color": "#a9dc7660",
+    "vim.highlightedyank.duration": 250,
+    "vim.highlightedyank.enable": true,
+    "vim.hlsearch": true,
+    "vim.incsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "after": [
+                "<Esc>"
+            ],
+            "before": [
+                "j",
+                "j"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "<leader>",
+                "e"
+            ],
+            "commands": [
+                "workbench.view.explorer"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "b"
+            ],
+            "commands": [
+                "workbench.action."
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "p",
+                "d"
+            ],
+            "commands": [
+                "editor.action.peekDefinition"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "i"
+            ],
+            "commands": [
+                "editor.action.goToImplementation"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "p",
+                "i"
+            ],
+            "commands": [
+                "editor.action.peekImplementation"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "n",
+                "e"
+            ],
+            "commands":[
+                "edtior.action.GoToNextError"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "q"
+            ],
+            "commands": [
+                "editor.action.quickFix"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "r"
+            ],
+            "commands": [
+                "editor.action.referenceSearch.trigger"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "t"
+            ],
+            "commands": [
+                "editor.action.goToTypeDefinition"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "p",
+                "t"
+            ],
+            "commands": [
+                "editor.action.peekTypeDefinition"
+            ]
+        }
+    ],
+    "vim.smartRelativeLine": false,
+    "vim.useCtrlKeys": true,
+    "vim.useSystemClipboard": true,
+    "window.restoreFullscreen": true,
+    "window.title": "${activeEditorShort}${separator}${rootName}${separator}${profileName}",
+    "workbench.activityBar.visible": false,
+    "workbench.colorTheme": "Everforest Dark",
+    "workbench.editor.closeOnFileDelete": true,
+    "workbench.editor.decorations.badges": true,
+    "workbench.editor.decorations.colors": true,
+    "workbench.editor.enablePreview": true,
+    "workbench.editor.enablePreviewFromCodeNavigation": true,
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.list.horizontalScrolling": true,
+    "workbench.sideBar.location": "right",
+    "workbench.statusBar.visible": true,
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.useLibraryCodeForTypes": false,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnType": true
+    },
+    "[jinja-sql]": {
+        "editor.defaultFormatter": "innoverio.vscode-dbt-power-user"
+    },
+    "explorer.confirmDelete": false,
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.startupEditor": "none",
+    "explorer.confirmDragAndDrop": false,
+}

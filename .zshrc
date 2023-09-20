@@ -1,31 +1,30 @@
-#! /usr/bin/env zsh
-# vim: set sw=2 ts=2 sts=2 et tw=80 ft=zsh fdm=marker:
+#!/bin/zsh
 
-# ######################
-# Prompt ###############
-# ######################
+# Source configuration files
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/options.zsh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/exports.zsh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/bindings.zsh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/completions.zsh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/pyenv.zsh"
 
-autoload -Uz promptinit
-promptinit
-prompt pure
+# Theme
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/themes/simple.zsh-theme"
 
-# ######################
-# ZSH Config Files #####
-# ######################
-
-ZSH_CONFIG_FILE=(options keybindings exports functions aliases)
-
-declare -a ZSH_CONFIG_FILE
-
-for ZSH_CONFIG in ${ZSH_CONFIG_FILE[@]}; do
-    if [ -f "$HOME/.zsh/$ZSH_CONFIG.zsh" ]; then
-        source "$HOME/.zsh/$ZSH_CONFIG.zsh"
-    fi
+# Aliases
+for alias_file in "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/aliases/"*.zsh; do
+	source "$alias_file"
 done
 
-# Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# Functions
+for function_file in "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/"*.zsh; do
+	source "$function_file"
+done
+
+# Local configuration
+if [ -f "$HOME/.zshrc.local" ]; then
+	source "$HOME/.zshrc.local"
+fi
+
+# Load and initialize completion system
+autoload -Uz compinit
+compinit

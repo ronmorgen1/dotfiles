@@ -51,3 +51,21 @@ function git_develop_branch() {
   done
   echo staging
 }
+
+function parse_git_branch() {
+    git branch --show-current
+}
+
+function git_rebase() {
+    if [ $# -eq 0 ]
+    then
+        BRANCH="master"
+	else
+		BRANCH=$1
+	fi
+    CURR_BRANCH=$(parse_git_branch)
+    echo "Rebasing branch '$CURR_BRANCH' on '$BRANCH'"
+    sleep 2
+	git fetch origin $BRANCH && \
+    git rebase origin/$BRANCH
+}

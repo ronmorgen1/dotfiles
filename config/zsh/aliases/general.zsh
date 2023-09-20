@@ -2,18 +2,7 @@
 # vim: set fdm=marker:
 
 # ######################
-# Custom Aliases #######
-# ######################
-
-# Source file if it exists under "$HOME/.zsh/custom/aliases"
-for f in $HOME/.zsh/custom/aliases/*.zsh; do
-    if [[ -f "$f" ]]; then
-        source "$f"
-    fi
-done
-
-# ######################
-# ## General ###########
+# ## General Aliases ##
 # ######################
 
 alias vi="$EDITOR"
@@ -48,19 +37,6 @@ if command -v bat &>/dev/null; then
     alias cat="bat -pp --theme \"Visual Studio Dark+\"" # Use bat instead of cat
 fi
 
-# less
-export LESS_TERMCAP_mb=$'\E[01;31m'       # Begins blinking.
-export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # Begins bold.
-export LESS_TERMCAP_me=$'\E[0m'           # Ends mode.
-export LESS_TERMCAP_se=$'\E[0m'           # Ends standout-mode.
-export LESS_TERMCAP_so=$'\E[38;5;246m'    # Begins standout-mode.
-export LESS_TERMCAP_ue=$'\E[0m'           # Ends underline.
-export LESS_TERMCAP_us=$'\E[04;38;5;146m' # Begins underline.
-
-# aws
-alias aws_prod="export AWS_PROFILE=Eng-Prod" # Set AWS_PROFILE to Eng-Prod
-alias aws_dev="export AWS_PROFILE=Eng-Dev"   # Set AWS_PROFILE to Eng-Dev
-
 # tmux
-alias tls='tmux list-sessions'   # List all tmux sessions
-alias tks='tmux kill-session -a' # Kill all tmux sessions
+alias tl="tmux list-sessions"
+alias tk="tmux ls | grep -vq attached && tmux kill-session -a"

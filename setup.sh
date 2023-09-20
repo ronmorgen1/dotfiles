@@ -58,17 +58,16 @@ create_symlinks() {
     done
 
     echo "${FMT_BLUE}Crating Symbolic Links${FMT_RESET}"
-    ln -sf "$DOTFILES/vim" "$HOME/.vim"
     ln -sf "$DOTFILES/.vimrc" "$HOME/.vimrc"
-    ln -sf "$DOTFILES/zsh" "$HOME/.zsh"
+    ln -sf "$DOTFILES/.zprofile" "$HOME/.zprofile"
     ln -sf "$DOTFILES/.zshrc" "$HOME/.zshrc"
     ln -sf "$DOTFILES/.zshrc.local" "$HOME/.zshrc.local"
     ln -sf "$DOTFILES/config" "$HOME/.config"
     ln -sf "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
     ln -sf "$DOTFILES/git/.gitignore" "$HOME/.gitignore"
-    ln -sf "$DOTFILES/git/.gitmessage" "$HOME/.gitmessage"
-    ln -sf "$DOTFILES/.inputrc" "$HOME/.inputrc"
-    ln -sf "$DOTFILES/.bin" "$HOME/.bin"
+    ln -sf "$DOTFILES/vim" "$HOME/.vim"
+    ln -sf "$DOTFILES/vscode/keybindings.json""$HOME/Library/Application Support/Code/User/keybindings.json"
+    ln -sf "$DOTFILES/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
 }
 
 main() {

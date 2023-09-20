@@ -1,6 +1,6 @@
-"*****************************************************************************
-"" Vim-Plug
-"*****************************************************************************
+" -----------------------------------------------------------------------------
+" Vim-Plug
+" -----------------------------------------------------------------------------
 
 let vimplug_exists=expand('~/.vim/autoload/plug.vim')
 if has('win32')&&!has('win64')
@@ -26,14 +26,21 @@ call plug#begin(expand('~/.vim/plugged'))
 
 Plug 'sainnhe/everforest'
 Plug 'github/copilot.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'dense-analysis/ale'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
 filetype plugin indent on
 
-"*****************************************************************************
-"" Basic Setup
-"*****************************************************************************"
+" -----------------------------------------------------------------------------
+" Basic Setup
+" -----------------------------------------------------------------------------"
+
+let mapleader=' '
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -44,13 +51,29 @@ set tabstop=4
 set softtabstop=0
 set shiftwidth=4
 set expandtab
-let mapleader=' '
 set hidden
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
 set fileformats=unix,dos,mac
+set clipboard=unnamedplus
+
+" Hide scrollbars and mute annoying sound on errors
+if has('gui_running')
+  set guioptions-=r
+  set guioptions-=L
+  set guioptions-=T
+  set guioptions-=e
+  set shortmess+=c
+endif
+
+" Clipboard
+if has('unnamedplus')
+  set clipboard=unnamedplus,unnamed
+else
+  set clipboard+=unnamed
+endif
 
 if exists('$SHELL')
     set shell=$SHELL
@@ -58,11 +81,12 @@ else
     set shell=/bin/sh
 endif
 
-"*****************************************************************************
+" -----------------------------------------------------------------------------
 "" Visual Settings
-"*****************************************************************************
+" -----------------------------------------------------------------------------
 
 syntax on
+
 set ruler
 set number
 
@@ -78,9 +102,9 @@ let g:everforest_better_performance = 1
 
 colorscheme everforest
 
-"*****************************************************************************
+" -----------------------------------------------------------------------------
 "" Autocmd Rules
-"*****************************************************************************
+" -----------------------------------------------------------------------------
 
 augroup vimrc-sync-fromstart
   autocmd!
@@ -93,12 +117,6 @@ augroup vimrc-remember-cursor-position
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 
-" txt
-augroup vimrc-wrapping
-  autocmd!
-  autocmd BufRead,BufNewFile *.txt call s:setupWrapping()
-augroup END
-
 " make/cmake
 augroup vimrc-make-cmake
   autocmd!
@@ -106,11 +124,21 @@ augroup vimrc-make-cmake
   autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
 augroup END
 
+" Changing cursor and highlighting line when in insert mode
+autocmd InsertEnter,InsertLeave * set cul!
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
 set autoread
 
-"*****************************************************************************
+" -----------------------------------------------------------------------------
 "" Mappings
-"*****************************************************************************
+" -----------------------------------------------------------------------------
 
 " Be the change you want to see
 nnoremap <Left>  <Nop>
@@ -222,6 +250,55 @@ noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 "" Opens a tab edit command with the path of the currently edited file filled
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
+" -----------------------------------------------------------------------------
+" ALE
+" -----------------------------------------------------------------------------
+
+let g:ale_linters = {
+	\'json': ['jq'],
+	\'yaml': ['yamllint'],
+	\'sql' : ['sqlint'],
+	\'bash': ['shfmt']
+\}
+
+let g:ale_fixers = {
+    \'*'   : ['remove_trailing_lines', 'trim_whitespace'],
+    \'json': ['jq'],
+    \'yaml': ['yamlfix'],
+    \'sql' : ['sqlfmt'],
+    \'bash': ['shfmt']
+\}
+
+let g:ale_fix_on_save = 1
+
+highlight ALEError cterm=underline
+highlight ALEWarning cterm=underline
+
+" -----------------------------------------------------------------------------
+"  Airline
+" -----------------------------------------------------------------------------
+
+let g:airline_theme                               = 'everforest'
+let g:airline_powerline_fonts                     = 1
+let g:airline_left_sep                            = ''
+let g:airline_left_alt_sep                        = ''
+let g:airline_right_sep                           = ''
+let g:airline_right_alt_sep                       = ''
+let g:airline_detect_whitespace                   = 1
+let g:airline_section_c                           = airline#section#create(['%{fnamemodify(expand("%"), ":~:.")}'])
+let g:airline_section_y                           = '%{fnamemodify(getcwd(), ":t")}'
+let g:airline_extensions                          = ['branch']
+let g:airline_section_z                           = '%3p%% %3l/%L:%3v'
+
+" -----------------------------------------------------------------------------
+"  Git Gutter
+" -----------------------------------------------------------------------------
+
+let g:gitgutter_max_signs             = 5000
+let g:gitgutter_sign_removed          = '✗'
+let g:gitgutter_sign_added            = '✓'
+let g:gitgutter_map_keys              = 0
+let g:gitgutter_diff_args             = '--ignore-space-at-eol'
 
 " -----------------------------------------------------------------------------
 " Abbreviations

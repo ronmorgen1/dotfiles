@@ -49,8 +49,8 @@ shell:
   program: /bin/zsh
   args:
     - -l
-    - -c
-    - "tmux"
+    # - -c
+
 
 key_bindings:
   # (macOS only)
