@@ -7,8 +7,8 @@ export LC_ALL=en_US.UTF-8
 export TERM="tmux-256color"
 export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
 export EDITOR="nvim"
-export VISUAL="code --wait"
-export MANPAGER="$VISUAL +Man!"
+export VISUAL="$EDITOR"
+export MANPAGER="$VISUAL"
 
 # go
 export GOROOT="/usr/lib/go"

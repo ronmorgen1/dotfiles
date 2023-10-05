@@ -20,7 +20,7 @@
   untracked = red
 
 [core]
-  editor = vim
+  editor = nvim
   excludesfile = ~/.gitignore
 
 [url "https://github.com/"]

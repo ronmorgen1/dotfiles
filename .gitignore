@@ -24,3 +24,6 @@ config/pip
 config/gh-dash
 config/raycast
 config/github-copilot
+
+**/tmux-prefix-highlight
+

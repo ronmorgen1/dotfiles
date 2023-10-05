@@ -1,7 +1,12 @@
 session_name: dev
+environment:
+  ENV: prod
+  AWS_PROFILE: Eng-Prod
 windows:
   - window_name: dbt
     start_directory: "${HOME}/pgy-projects/dbt-luigi"
+    layout: tiled
+    suppress_history: false
     panes:
       - shell_command:
           - cd dbt-luigi-spark; clear
@@ -9,3 +14,4 @@ windows:
           - cd DBT_piperdb; clear
   - window_name: dotfiles
     start_directory: "${HOME}/.dotfiles"
+    layout: main-horizontal
