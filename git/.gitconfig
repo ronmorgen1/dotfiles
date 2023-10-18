@@ -11,9 +11,6 @@
   status = auto
   ui = true
 
-[commit]
-  template = ~/.gitmessage
-
 [color "status"]
   added = green
   changed = yellow

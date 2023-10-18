@@ -2,10 +2,10 @@ local plugins = {
   { lazy = true, "nvim-lua/plenary.nvim" },
 
   {
-      "neanias/everforest-nvim",
-      config = function ()
-        require("everforest")
-      end
+    "neanias/everforest-nvim",
+    config = function()
+      require "everforest"
+    end,
   },
 
   -- file tree
@@ -160,10 +160,23 @@ local plugins = {
   },
   -- alpha
   {
-    'goolord/alpha-nvim',
-    config = function ()
-       require "plugins.configs.alpha"
-     end
+    "goolord/alpha-nvim",
+    config = function()
+      require "plugins.configs.alpha"
+    end,
+  },
+  {
+    "cameron-wags/rainbow_csv.nvim",
+    config = true,
+    ft = {
+      "csv",
+    },
+    cmd = {
+      "RainbowDelim",
+      "RainbowDelimSimple",
+      "RainbowDelimQuoted",
+      "RainbowMultiDelim",
+    },
   },
 }
 

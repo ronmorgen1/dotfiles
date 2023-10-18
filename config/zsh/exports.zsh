@@ -19,3 +19,4 @@ export PATH="$PATH:/usr/local/spark/bin:$PATH"
 
 # brew
 export HOMEBREW_NO_INSTALL_FROM_API=1
+export PATH="/usr/local/sbin:$PATH"

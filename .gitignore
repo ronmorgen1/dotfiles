@@ -26,4 +26,4 @@ config/raycast
 config/github-copilot
 
 **/tmux-prefix-highlight
-
+config/nvim/lazy-lock.json

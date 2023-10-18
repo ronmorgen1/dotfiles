@@ -4,6 +4,12 @@ require("conform").setup {
     javascript = { { "prettier" } },
     zsh = { { "shfmt" } },
     sh = { { "shfmt" } },
-    python = { { "black" } }
+    python = { { "black" } },
+    sql = { { "sqlfmt" } },
+  },
+  formatters = {
+    sqlfmt = {
+      command = "sqlfmt",
+    },
   },
 }
