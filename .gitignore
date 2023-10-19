@@ -11,7 +11,7 @@
 # Temporary
 .netrwhist
 
-
+.DS_Store
 vim/after
 vim/pack/*
 vim/plugged
@@ -26,4 +26,6 @@ config/raycast
 config/github-copilot
 
 **/tmux-prefix-highlight
+config/nvim/lazy-lock.json
+config/nvim/lazyvim.json
 config/nvim/lazy-lock.json

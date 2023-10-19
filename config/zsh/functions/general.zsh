@@ -14,3 +14,8 @@ function list_alias() {
         echo "No git aliases for $alias_name"
     fi
 }
+
+
+function edit_git_changed() {
+
+}

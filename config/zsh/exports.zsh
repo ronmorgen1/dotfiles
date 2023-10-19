@@ -10,6 +10,8 @@ export EDITOR="nvim"
 export VISUAL="$EDITOR"
 export MANPAGER="$VISUAL"
 
+export MYVIMRC=${XDG_CONFIG_HOME:-$HOME/.config}/nvim/init.lua
+
 # go
 export GOROOT="/usr/lib/go"
 export GOPATH="$HOME/go"
