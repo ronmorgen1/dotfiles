@@ -25,7 +25,6 @@ config/gh-dash
 config/raycast
 config/github-copilot
 
-**/tmux-prefix-highlight
-config/nvim/lazy-lock.json
+tmux/plugins
 config/nvim/lazyvim.json
-config/nvim/lazy-lock.json
+lazy-lock.json

@@ -28,3 +28,4 @@ fi
 # Load and initialize completion system
 autoload -Uz compinit
 compinit
+
