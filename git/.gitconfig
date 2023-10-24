@@ -3,6 +3,9 @@
   email = ron.morgenstern@pagaya.com
   username = ronmorgen1
 
+[init]
+  defaultBranch = master
+
 [color]
   branch = auto
   diff = auto

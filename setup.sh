@@ -58,16 +58,30 @@ create_symlinks() {
     done
 
     echo "${FMT_BLUE}Crating Symbolic Links${FMT_RESET}"
-    ln -sf "$DOTFILES/.vimrc" "$HOME/.vimrc"
-    ln -sf "$DOTFILES/.zprofile" "$HOME/.zprofile"
+
+    # Zsh
     ln -sf "$DOTFILES/.zshrc" "$HOME/.zshrc"
+    ln -sf "$DOTFILES/.zshenv" "$HOME/.zshenv"
+    ln -sf "$DOTFILES/.zprofile" "$HOME/.zprofile"
+    ln -sf "$DOTFILES/.zlogout" "$HOME/.zlogout"
+    ln -sf "$DOTFILES/.zlogin" "$HOME/.zlogin"
+    ln -sf "$DOTFILES/zsh" "$HOME/.zsh"
     ln -sf "$DOTFILES/.zshrc.local" "$HOME/.zshrc.local"
-    ln -sf "$DOTFILES/config" "$HOME/.config"
+
+    # Terminal
+    ln -sf "$DOTFILES/alacritty" "$HOME/.config/alacritty"
+    ln -sf "$DOTFILES/tmux" "$HOME/.config/tmux"
+
+    # Vim
+    ln -sf "$DOTFILES/.vimrc" "$HOME/.vimrc"
+    ln -sf "$DOTFILES/vim" "$HOME/.vim"
+
+    # Neovim
+    ln -sf "$DOTFILES/nvim" "$HOME/.config/nvim"
+
+    # Git
     ln -sf "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
     ln -sf "$DOTFILES/git/.gitignore" "$HOME/.gitignore"
-    ln -sf "$DOTFILES/vim" "$HOME/.vim"
-    ln -sf "$DOTFILES/vscode/keybindings.json""$HOME/Library/Application Support/Code/User/keybindings.json"
-    ln -sf "$DOTFILES/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
 }
 
 main() {

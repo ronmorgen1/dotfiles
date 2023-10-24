@@ -1,24 +1,24 @@
-#!/bin/zsh
+#!/bin/env zsh
+# # vim:syntax=zsh
+# # vim:filetype=zsh
 
 # Source configuration files
-source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/options.zsh"
-source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/exports.zsh"
-source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/bindings.zsh"
-source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/completions.zsh"
-source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/pyenv.zsh"
+source "${HOME}/.zsh/options.zsh"
+source "${HOME}/.zsh/exports.zsh"
+source "${HOME}/.zsh/bindings.zsh"
+source "${HOME}/.zsh/completions.zsh"
+source "${HOME}/.zsh/aliases.zsh"
+source "${HOME}/.zsh/functions.zsh"
 
 # Theme
-source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/themes/simple.zsh-theme"
+source "${HOME}/.zsh/themes/simple.zsh-theme"
 
-# Aliases
-for alias_file in "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/aliases/"*.zsh; do
-	source "$alias_file"
-done
-
-# Functions
-for function_file in "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/"*.zsh; do
-	source "$function_file"
-done
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # Local configuration
 if [ -f "$HOME/.zshrc.local" ]; then
@@ -28,4 +28,3 @@ fi
 # Load and initialize completion system
 autoload -Uz compinit
 compinit
-
