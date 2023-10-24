@@ -1,0 +1,53 @@
+import:
+  - "~/.config/alacritty/catppuccin-frappe.yml"
+
+env:
+  TERM: xterm-256color
+
+window:
+  opacity: 1
+  dimensions:
+    columns: 140
+    lines: 80
+  padding:
+    x: 6
+    y: 6
+  decorations: buttonless
+  dynamic_padding: false
+  startup_mode: Maximized
+
+font:
+  normal:
+    family: FiraCode Nerd Font Mono
+  size: 11.5
+
+bell:
+  animation: EaseOutExpo
+  duration: 0
+
+live_config_reload: true
+
+draw_bold_text_with_bright_colors: true
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  save_to_clipboard: true
+
+cursor:
+  style:
+    shape: Beam
+    blinking: Always
+  blink_interval: 500
+  unfocused_hollow: true
+  thickness: 0.15
+  vi_mode_style:
+    shape: Block
+    blinking: Off
+
+shell:
+  program: /bin/zsh
+  args:
+    - --login
+    - -c
+    - tmux new-session -A -s main
+

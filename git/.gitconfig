@@ -1,27 +1,31 @@
 [user]
-  name = Ron Morgenstern
-  email = ron.morgenstern@pagaya.com
-  username = ronmorgen1
+    name = Ron Morgenstern
+    email = ron.morgenstern@pagaya.com
+    username = ronmorgen1
+
+[init]
+    defaultBranch = master
 
 [color]
-  branch = auto
-  diff = auto
-  interactive = auto
-  pager = true
-  status = auto
-  ui = true
-
-[color "status"]
-  added = green
-  changed = yellow
-  untracked = red
+    branch = auto
+    diff = auto
+    interactive = auto
+    pager = true
+    status = auto
+    ui = true
 
 [core]
-  editor = nvim
-  excludesfile = ~/.gitignore
+    editor = nvim
+    excludesfile = ~/.gitignore
+
+[help]
+    autoCorrect = immediate
 
 [url "https://github.com/"]
-  insteadOf = git@github.com:
+    insteadOf = git@github.com:
 
 [merge]
-  ff = only
+    ff = only
+
+[pretty]
+    custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
