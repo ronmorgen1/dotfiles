@@ -1,71 +1,63 @@
-" -----------------------------------------------------------------------------
-" Vim-Plug
-" -----------------------------------------------------------------------------
+"------------------------------------------------------------
+" General
+"------------------------------------------------------------
 
-let vimplug_exists=expand('~/.vim/autoload/plug.vim')
-if has('win32')&&!has('win64')
-  let curl_exists=expand('C:\Windows\Sysnative\curl.exe')
-else
-  let curl_exists=expand('curl')
-endif
-
-if !filereadable(vimplug_exists)
-  if !executable(curl_exists)
-    echoerr "You have to install curl or first install vim-plug yourself!"
-    execute "q!"
-  endif
-  echo "Installing Vim-Plug..."
-  echo ""
-  silent exec "!"curl_exists" -fLo " . shellescape(vimplug_exists) . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-  let g:not_finish_vimplug = "yes"
-
-  autocmd VimEnter * PlugInstall
-endif
-
-call plug#begin(expand('~/.vim/plugged'))
-
-Plug 'sainnhe/everforest'
-Plug 'github/copilot.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'dense-analysis/ale'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
-
-call plug#end()
-
-filetype plugin indent on
-
-" -----------------------------------------------------------------------------
-" Basic Setup
-" -----------------------------------------------------------------------------"
-
-let mapleader=' '
-
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8
+" Encoding
+set encoding=utf8
+set fileencoding=utf8
+set fileencodings=utf8
 set ttyfast
-set backspace=indent,eol,start
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" Tabs. May be overridden by autocmd rules
 set tabstop=4
 set softtabstop=0
 set shiftwidth=4
 set expandtab
-set hidden
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
+
+" Enable hidden buffers
+set hidden 
+
+" Searching
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+
+" Disable swap & backup files
+set noswapfile
+set nobackup
+set nowritebackup
+
 set fileformats=unix,dos,mac
-set clipboard=unnamedplus
+
+if exists('$SHELL')
+    set shell=$SHELL
+else
+    set shell=/usr/local/bin/zsh
+endif
 
 " Hide scrollbars and mute annoying sound on errors
 if has('gui_running')
-  set guioptions-=r
-  set guioptions-=L
-  set guioptions-=T
   set guioptions-=e
+  set guioptions-=L
+  set guioptions-=r
+  set guioptions-=T
+  set guioptions-=T
+  set guitablabel=%M\ %t
   set shortmess+=c
+  set t_Co=256
 endif
 
 " Clipboard
@@ -75,107 +67,39 @@ else
   set clipboard+=unnamed
 endif
 
-if exists('$SHELL')
-    set shell=$SHELL
-else
-    set shell=/bin/sh
-endif
+" Add a bit extra margin to the left
+set foldcolumn=1
 
-" -----------------------------------------------------------------------------
-"" Visual Settings
-" -----------------------------------------------------------------------------
+"------------------------------------------------------------
+" Visuals
+"------------------------------------------------------------
 
-syntax on
+set fillchars+=eob:\ ,fold:\ ,vert:\│
+set number " Show line numbers
+set ruler " Show cursor position
 
-set ruler
-set number
 
-if has('termguicolors')
-  set termguicolors
-endif
+" Enable syntax highlighting
+
+syntax enable
+set termguicolors
+
+" Set colorscheme 
+colorscheme catppuccin_frappe
 
 set background=dark
 
-" Available values: 'hard', 'medium'(default), 'soft'
-let g:everforest_background = 'soft'
-let g:everforest_better_performance = 1
+"------------------------------------------------------------
+" Mappings
+"------------------------------------------------------------
 
-colorscheme everforest
-
-" -----------------------------------------------------------------------------
-"" Autocmd Rules
-" -----------------------------------------------------------------------------
-
-augroup vimrc-sync-fromstart
-  autocmd!
-  autocmd BufEnter * :syntax sync maxlines=200
-augroup END
-
-" Remember cursor position
-augroup vimrc-remember-cursor-position
-  autocmd!
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-augroup END
-
-" make/cmake
-augroup vimrc-make-cmake
-  autocmd!
-  autocmd FileType make setlocal noexpandtab
-  autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
-augroup END
-
-" Changing cursor and highlighting line when in insert mode
-autocmd InsertEnter,InsertLeave * set cul!
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-
-set autoread
-
-" -----------------------------------------------------------------------------
-"" Mappings
-" -----------------------------------------------------------------------------
-
-" Be the change you want to see
-nnoremap <Left>  <Nop>
-nnoremap <Right> <Nop>
-nnoremap <Up>    <Nop>
-nnoremap <Down>  <Nop>
-
-" Move half page faster
-nnoremap <Leader>d  <C-d>
-nnoremap <Leader>u  <C-u>
-
-" Move to the start/end of line
-nnoremap H ^
-nnoremap L $
+let mapleader = "\\"
 
 " Treat long lines as break lines (useful when moving around in them)
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
-
-" Insert mode shortcut
-inoremap <C-h> <BS>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-b> <Left>
-inoremap <C-f> <Right>
-
-" Command mode shortcut
-cnoremap <C-h> <BS>
-cnoremap <C-j> <Down>
-cnoremap <C-k> <Up>
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-d> <Delete>
 
 " Escaping
 inoremap jj <Esc>
@@ -193,8 +117,8 @@ nnoremap <silent> ]w  <C-W>w
 nnoremap <silent> [w  <C-W>W
 
 "" Split
-noremap <Leader>h :<C-u>split<CR>
-noremap <Leader>v :<C-u>vsplit<CR>
+noremap <Leader>sh :<C-u>split<CR>
+noremap <Leader>sv :<C-u>vsplit<CR>
 
 " Tabs
 nnoremap <silent> ]t :tabnext<CR>
@@ -217,12 +141,6 @@ else
   nnoremap <silent> <Leader>' :shell<CR>
 endif
 
-" Redo
-nnoremap U <C-r>
-
-" Quick command mode
-nnoremap <CR> :
-
 " Yank/Cut to the end of line
 nnoremap Y y$
 nnoremap D d$
@@ -235,74 +153,21 @@ vnoremap > >gv
 nnoremap <silent> ]<Space> :<C-u>put =repeat(nr2char(10),v:count)<Bar>execute "'[-1"<CR>
 nnoremap <silent> [<Space> :<C-u>put!=repeat(nr2char(10),v:count)<Bar>execute "']+1"<CR>
 
-" Search result highlight countermand
-nnoremap <silent> <Leader>sc :nohlsearch<CR>
+" Quick command mode
+nnoremap <CR> :
 
 " Toggle pastemode
 nnoremap <silent> <Leader>tp :setlocal paste!<CR>
 
-" Reload .vimrc
-nnoremap <F12> :source ~/.vimrc <cr>:echom "Reloaded Vim configuration"<cr>
-
-"" Opens an edit command with the path of the currently edited file filled in
+" Opens an edit command with the path of the currently edited file filled in
 noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
-"" Opens a tab edit command with the path of the currently edited file filled
+" Opens a tab edit command with the path of the currently edited file filled
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
-" -----------------------------------------------------------------------------
-" ALE
-" -----------------------------------------------------------------------------
-
-let g:ale_linters = {
-	\'json': ['jq'],
-	\'yaml': ['yamllint'],
-	\'sql' : ['sqlint'],
-	\'bash': ['shfmt']
-\}
-
-let g:ale_fixers = {
-    \'*'   : ['remove_trailing_lines', 'trim_whitespace'],
-    \'json': ['jq'],
-    \'yaml': ['yamlfix'],
-    \'sql' : ['sqlfmt'],
-    \'bash': ['shfmt']
-\}
-
-let g:ale_fix_on_save = 1
-
-highlight ALEError cterm=underline
-highlight ALEWarning cterm=underline
-
-" -----------------------------------------------------------------------------
-"  Airline
-" -----------------------------------------------------------------------------
-
-let g:airline_theme                               = 'everforest'
-let g:airline_powerline_fonts                     = 1
-let g:airline_left_sep                            = ''
-let g:airline_left_alt_sep                        = ''
-let g:airline_right_sep                           = ''
-let g:airline_right_alt_sep                       = ''
-let g:airline_detect_whitespace                   = 1
-let g:airline_section_c                           = airline#section#create(['%{fnamemodify(expand("%"), ":~:.")}'])
-let g:airline_section_y                           = '%{fnamemodify(getcwd(), ":t")}'
-let g:airline_extensions                          = ['branch']
-let g:airline_section_z                           = '%3p%% %3l/%L:%3v'
-
-" -----------------------------------------------------------------------------
-"  Git Gutter
-" -----------------------------------------------------------------------------
-
-let g:gitgutter_max_signs             = 5000
-let g:gitgutter_sign_removed          = '✗'
-let g:gitgutter_sign_added            = '✓'
-let g:gitgutter_map_keys              = 0
-let g:gitgutter_diff_args             = '--ignore-space-at-eol'
-
-" -----------------------------------------------------------------------------
+"------------------------------------------------------------
 " Abbreviations
-" -----------------------------------------------------------------------------
+"------------------------------------------------------------
 
 " no one is really happy until you have this shortcuts
 cnoreabbrev W! w!
@@ -316,27 +181,15 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
 
-" -----------------------------------------------------------------------------
-" Functions and Commands
-" -----------------------------------------------------------------------------
+"------------------------------------------------------------
+" Autocommands
+"------------------------------------------------------------
 
-" Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-    let l:currentBufNum = bufnr("%")
-    let l:alternateBufNum = bufnr("#")
+"Restore cursor position
+augroup restore_pos | au!
+    au BufWinEnter *
+                \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+                \ |   exe 'normal! g`"zz'
+                \ | endif
+augroup end
 
-    if buflisted(l:alternateBufNum)
-        buffer #
-    else
-        bnext
-    endif
-
-    if bufnr("%") == l:currentBufNum
-        new
-    endif
-
-    if buflisted(l:currentBufNum)
-        execute("bdelete! ".l:currentBufNum)
-    endif
-endfunction

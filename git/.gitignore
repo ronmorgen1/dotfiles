@@ -30,7 +30,7 @@ logs/
 .idea/**/azureSettings.xml
 
 ### Python ###
-__pycache__/
+__pycache__
 *.py[cod]
 *$py.class
 
@@ -52,7 +52,7 @@ sdist/
 var/
 wheels/
 share/python-wheels/
-*.egg-info/
+*.egg-info
 .installed.cfg
 *.egg
 MANIFEST
@@ -183,12 +183,7 @@ tags
 [._]*.un~
 
 ### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
+.vscode
 # Local History for Visual Studio Code
 .history/
 
