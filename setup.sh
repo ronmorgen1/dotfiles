@@ -22,6 +22,8 @@ create_symlinks() {
 	# vim
 	ln -sf "$DOTFILES/.vimrc" "$HOME/.vimrc"
 	ln -sf "$DOTFILES/vim" "$HOME/.vim"
+	# nvim
+	ln -sf "$DOTFILES/nvim" "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 	# git
 	ln -sf "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
 	ln -sf "$DOTFILES/git/.gitignore" "$HOME/.gitignore"
