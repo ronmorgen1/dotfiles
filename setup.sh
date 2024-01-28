@@ -21,13 +21,13 @@ create_symlinks() {
 	ln -sf "$DOTFILES/tmux" "${XDG_CONFIG_HOME:-$HOME/.config}/tmux"
 	# vim
 	ln -sf "$DOTFILES/.vimrc" "$HOME/.vimrc"
-	ln -sf "$DOTFILES/vim" "$HOME/.vim"
 	# nvim
 	ln -sf "$DOTFILES/nvim" "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 	# git
 	ln -sf "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
 	ln -sf "$DOTFILES/git/.gitignore" "$HOME/.gitignore"
-	# TODO: .vscode
+	# vscode
+	ln -sf "$DOTFILES/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
 }
 
 main() {

@@ -1,15 +1,11 @@
 local M = {
-  "neanias/everforest-nvim",
-  version = "main",
-  lazy = false,
-  priority = 1000,
+  "sainnhe/everforest",
+  lazy = false, -- make sure we load this during startup if it is your main colorscheme
+  priority = 1000, -- make sure to load this before all the other start plugins
 }
 
 function M.config()
-  vim.cmd [[colorscheme everforest]]
-  require("everforest").setup {
-    background = "soft",
-  }
+  vim.cmd.colorscheme "everforest"
 end
 
 return M

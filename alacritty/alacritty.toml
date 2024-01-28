@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/catppuccin-frappe.toml"]
+import = ["~/.config/alacritty/themes/kanagawa.toml"]
 live_config_reload = true
 
 [bell]
@@ -9,17 +9,16 @@ duration = 0
 draw_bold_text_with_bright_colors = true
 
 [cursor]
-blink_interval = 500
-thickness = 0.15
-unfocused_hollow = false
+blink_interval = 750
+unfocused_hollow = true
 
 [cursor.style]
 blinking = "Always"
-shape = "Beam"
+shape = "beam"
 
 [cursor.vi_mode_style]
-blinking = "Off"
-shape = "Block"
+blinking = "on"
+shape = "beam"
 
 [env]
 TERM = "xterm-256color"

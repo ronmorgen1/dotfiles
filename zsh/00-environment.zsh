@@ -12,13 +12,13 @@ export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:=/tmp}"
 
 export PATH=/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/sbin:/usr/local/bin
 
-# Man
-export MANPAGER="less -X"
-export MANWIDTH=999
-
 # Editors
-export EDITOR=vim
+export EDITOR=nvim
 export VISUAL=codium
+
+# Man
+export MANPAGER="${EDITOR:=nvim} +Man!"
+export MANWIDTH=999
 
 # Language
 export LC_COLLATE=en_US.UTF-8

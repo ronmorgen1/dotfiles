@@ -85,7 +85,7 @@ syntax enable
 set termguicolors
 
 " Set colorscheme 
-colorscheme catppuccin_frappe
+" colorscheme catppuccin_frappe
 
 set background=dark
 
